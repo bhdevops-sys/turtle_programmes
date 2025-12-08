@@ -13,6 +13,7 @@ This guide provides SQL scripts and verification points to ensure turtle interac
 
 All verification queries should ideally return **zero results** unless otherwise noted.
 
+Prior undertaking any of the cleansing steps, create a duplicate of the database.
 ---
 
 ### How to Use this guide
