@@ -21,9 +21,10 @@ Nesting Mobile App is designed to support nest patrol teams and researchers in m
 5. [Data Structure](#data-structure)
 6. [Reporting and Visualization](#reporting-and-visualization)
 7. [Deployment](#deployment)
+8. [note](#note)
 
 ---
-
+# note
 #### Features
 
 - **Nest Capture:** Log new nest details including the geographical coordinates.
