@@ -92,6 +92,9 @@ This process outlines how data is captured, stored, and utilized within the mobi
 | Hatching          | Logs data related to the hatching of turtle eggs.         |
 | Excavation       | Documents nest excavation details.             |
 
+##### Entity-Relationship Diagram (ERD)
+
+For a visual representation of the database structure, refer to the Entity-Relationship Diagram (ERD).
 ---
 
 #### Reporting and Visualization
