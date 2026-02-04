@@ -21,10 +21,9 @@ Nesting Mobile App is designed to support nest patrol teams and researchers in m
 5. [Data Structure](#data-structure)
 6. [Reporting and Visualization](#reporting-and-visualization)
 7. [Deployment](#deployment)
-8. [note](#note)
 
 ---
-# note
+
 #### Features
 
 - **Nest Capture:** Log new nest details including the geographical coordinates.
@@ -50,26 +49,23 @@ Nesting Mobile App is designed to support nest patrol teams and researchers in m
 
 This process outlines how data is captured, stored, and utilized within the mobile app:
 
-1. **Data Entry:** Users log into the AppSheet app to input data related to new nests, interactions, relocations, false crawls, hatching, and excavating.
+1. **Data Entry:** Users log into the AppSheet app to input data related to new nests, turtle interactions, nest relocations, false crawls, hatching, and excavation.
   
-2. **Data Validation:** The app employs validation rules to ensure input data is accurate and complete. Required fields include:
-   - Nest location (Latitude, Longitude)
-   - Date of observation
-   - Type of observation (Nest, Interaction, Relocation, False Crawl, Hatching, Excavation)
+2. **Data Validation:** The app employs validation rules to ensure input data is accurate and complete.
 
-3. **Data Storage:** Validated data is stored in a **Microsoft SQL Azure** database, enabling secure and reliable data management. 
+4. **Data Storage:** Data is stored in a **Microsoft SQL Azure** database, enabling secure and reliable data management. 
 
-4. **Data Retrieval:** Users can retrieve historical data through the app for reporting or further analysis.
+5. **Data Retrieval:** Users can retrieve historical data through the app or SQL environment for reporting or further analysis.
 
-5. **Data Analysis:** Power BI integrates with the SQL Azure database to visualize the data, providing insights into turtle behaviors, nesting success rates, and the effectiveness of conservation efforts.
+6. **Data Analysis:** Power BI integrates with the SQL Azure database to visualize the data, providing insights into turtle behaviors, nesting success rates, and the effectiveness of conservation efforts.
 
 ---
 
 #### User Guide
 
 1. **Creating an Account:**
-   - Download the app from your device's app store.
-   - Create an account using your email and set a password.
+   - Download the app from your device's app store;Google play, App store.
+   - Create an account using your email and set a password (link to app will be shared to this account by app creator).
 
 2. **Navigating the Interface:**
    - Home Screen: Displays options for data entry, reports, and settings.
@@ -89,12 +85,12 @@ This process outlines how data is captured, stored, and utilized within the mobi
 
 | Table Name        | Description                                               |
 |-------------------|-----------------------------------------------------------|
-| TurtleNests       | Stores details of turtle nests including location and date. |
-| TurtleInteractions | Records interactions with turtles during nesting activities. |
-| NestRelocations    | Maintains information on nests that have been relocated.  |
-| FalseCrawls       | Captures instances when turtles return without nesting.     |
+| Turtle Nest       | Stores  turtle nest details including location and date. |
+| Turtle Interaction | Records interactions with turtles during nesting activities. |
+| Nest Relocation    | Maintains information on relocated tutle nests.  |
+| FalseCrawl       | Captures instances when turtles return without nesting.     |
 | Hatching          | Logs data related to the hatching of turtle eggs.         |
-| Excavations       | Documents the excavation process post-hatching.             |
+| Excavation       | Documents nest excavation details.             |
 
 ---
 
@@ -104,7 +100,7 @@ The app's integration with **Power BI** allows users to visualize data through:
 
 - Interactive dashboards displaying nest success rates.
 - Charts illustrating turtle nesting timelines.
-- Maps showing nest locations and false crawl paths.
+- Maps showing nest locations.
 
 ---
 
@@ -115,7 +111,7 @@ To deploy the app, follow these steps:
 1. Configure your Microsoft SQL Azure database to accept connections.
 2. Set up the AppSheet application, linking it to the database.
 3. Test the application thoroughly to ensure all features function correctly.
-4. Publish the app for user access.
+4. Deploy the app for user access.
 
 ---
 
