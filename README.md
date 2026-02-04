@@ -26,11 +26,12 @@ Nesting Mobile App is designed to support nest patrol teams and researchers in m
 
 #### Features
 
-- **Nest Capture:** Log the geographical coordinates of turtle nests.
-- **Turtle Interaction:** Record data on turtle encounters during nesting.
-- **Nest Relocation:** Manage and document the process of relocating nests for safety.
+- **Nest Capture:** Log new nest details including the geographical coordinates.
+- **Turtle Interaction:** Record data on turtle encounters during beach patrols.
+- **Nest Relocation:** Manage and document the process of relocating turtle nests for safety.
 - **False Crawl Tracking:** Identify and record instances where turtles return to the sea without nesting.
-- **Hatching and Excavation Data:** Monitor hatchlings, and document excavation of nests post-hatching.
+- **Hatching:** Monitor and log hatchling event
+- **Excavation Data:** Document excavation of nests post-hatching.
 
 ---
 
