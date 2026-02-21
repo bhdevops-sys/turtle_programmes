@@ -59,7 +59,7 @@ This process outlines how data is captured, stored, and utilized within the mobi
 #### User Guide
 
 1. **Creating an Account:**
-   - Download the app from your device's app store;Google play, App store.
+   - Download the appsheet app from your device's app store;Google play, App store.
    - Create an account using your email and set a password (link to app will be shared to this account by app creator).
 
 2. **Navigating the Interface:**
@@ -70,7 +70,7 @@ This process outlines how data is captured, stored, and utilized within the mobi
    - Fill out the required fields and hit the 'Submit' button to save the information.
 
 4. **Viewing Reports:**
-   - Navigate to the reports section to visual analysis provided by Power BI.
+   - uon request a link will be shared to the reports section to visual analysis provided by Power BI.
 
 ---
 
