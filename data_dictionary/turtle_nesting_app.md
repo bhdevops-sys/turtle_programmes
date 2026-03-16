@@ -1,8 +1,6 @@
 ### Sea Turtle Nest Monitoring Data Dictionary
 #### turtle_nest
 
-## Nests Table Schema
-
 | Field Name | SQL Type | Length | Nullable | Example Value | Allowed Values / Format | Description |
 |------------|----------|--------|----------|---------------|-------------------------|-------------|
 | nest_id | varchar | 20 | No | NEST_2026_001 | Unique string ID | Unique identifier for the turtle nest |
