@@ -88,14 +88,15 @@
 
 | Field Name | SQL Type | Length / Precision | Nullable | Example Value | Allowed Values / Format | Description |
 |------------|----------|-------------------|----------|---------------|------------------------|-------------|
-| party_type_id | int | 10 | No | 1 | Integer (FK) | Type of party (e.g., ranger, volunteer, organization) |
-| party_name | varchar | 200 | No | Jane Otieno | Text | Full name of the reporting party |
-| party_telephone_1 | varchar | 20 | Yes | +254701234567 | Phone number (string) | Primary contact number |
-| party_telephone_2 | varchar | 20 | Yes | +254712345678 | Phone number (string) | Secondary contact number |
-| party_email | varchar | 50 | Yes | jane.otieno@example.com | Valid email address | Email contact |
-| site_id | varchar | 8 | No | S001 | Alphanumeric ID | Reference to monitoring site |
-| sex_id | varchar | 8 | Yes | F | M / F / Unknown | Sex of the party if individual |
-| organization_id | varchar | 8 | Yes | ORG001 | Alphanumeric ID | Reference to organization if party represents one |
+| party_id | varchar | 8 | No | RPT001 | Alphanumeric | Unique ID for each party (person or organization) |
+| party_type_id | int | 10 | No | 1 | Integer (FK) | Reference to party type (lookup table) |
+| party_name | varchar | 200 | No | John Doe | Text | Full name of party or organization |
+| party_telephone_1 | varchar | 20 | Yes | +254701234567 | Text / Numeric | Primary contact number |
+| party_telephone_2 | varchar | 20 | Yes | +254712345678 | Text / Numeric | Secondary contact number |
+| party_email | varchar | 50 | Yes | john@example.com | Email format | Email address |
+| site_id | varchar | 8 | No | S001 | Alphanumeric | Reference to site associated with the party |
+| sex_id | varchar | 8 | Yes | M | Alphanumeric / FK | Reference to sex (`sex_id`) |
+| organization_id | varchar | 8 | Yes | ORG001 | Alphanumeric | Reference to associated organization (`organization_id`) |
 
 #### party_type
 
