@@ -1,4 +1,7 @@
 ### Sea Turtle Nest Monitoring Data Dictionary
+This catalog describes the structure, meaning, and rules of data in a the BH turtle database. It's relevance is in ensuring that data is comprehended, managed, and used consistently across the organization. It improves data clarity, quality, consistency, collaboration, and analysis, thus remaining essential for managing datasets and information systems within Bahari Hai.
+
+
 #### turtle_nest
 
 | Field Name | SQL Type | Length | Nullable | Example Value | Allowed Values / Format | Description |
