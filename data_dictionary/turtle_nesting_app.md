@@ -65,18 +65,24 @@
 #### nest_relocation
 
 | Field Name | SQL Type | Length / Precision | Nullable | Example Value | Allowed Values / Format | Description |
-|------------|----------|-------------------|----------|---------------|-------------------------|-------------|
-| original_top_egg_depth_cm | numeric | 8,2 | Yes | 35.5 | Decimal (cm) | Depth of top egg layer before relocation |
-| num_eggs_relocated | int | 10 | Yes | 110 | Integer ≥ 0 | Total number of eggs relocated |
-| num_micro_eggs_relocated | int | 10 | Yes | 3 | Integer ≥ 0 | Number of micro or defective eggs relocated |
-| original_bottom_egg_depth_cm | numeric | 8,2 | Yes | 62.3 | Decimal (cm) | Depth of bottom egg layer before relocation |
-| original_chamber_width_cm | varchar | 20 | Yes | 45.0 | Decimal (cm) stored as text | Original nest chamber width |
-| new_bottom_egg_depth_cm | numeric | 8,2 | Yes | 61.8 | Decimal (cm) | Bottom egg depth at new location |
-| new_chamber_width_cm | varchar | 20 | Yes | 46.2 | Decimal (cm) stored as text | New nest chamber width |
-| new_top_egg_depth_cm | numeric | 8,2 | Yes | 36.0 | Decimal (cm) | Top egg depth at new location |
-| new_location_id | int | 10 | Yes | 88 | Integer (FK) | Reference to new nest location |
-| relocation_notes | varchar | 200 | Yes | Eggs relocated carefully due to high tide | Free text (≤200 chars) | Notes about relocation |
-| time_taken_to_relocate | numeric | 4,2 | Yes | 1.50 | Decimal (hours) | Time in hours to perform relocation |
+|------------|----------|-------------------|----------|---------------|------------------------|-------------|
+| nest_relocation_id | int | 10 | No | 501 | Integer (Primary Key) | Unique ID for each nest relocation |
+| nest_id | varchar | 20 | No | NEST-2026-015 | Alphanumeric | Reference to the original nest (`nest_id`) |
+| reason_for_relocation | int | 10 | Yes | 1 | Integer (FK) | Reference to reason for relocation (lookup table) |
+| relocation_datetime | datetime | — | Yes | 2026-06-20 07:30:00 | YYYY-MM-DD HH:MM:SS | Date and time of relocation |
+| temp_logger_id_1 | int | 10 | Yes | 101 | Integer (FK) | Reference to first temperature logger used |
+| temp_logger_id_2 | int | 10 | Yes | 102 | Integer (FK) | Reference to second temperature logger used |
+| original_top_egg_depth_cm | numeric | 8,2 | Yes | 10.5 | Decimal (cm) | Depth of top egg before relocation |
+| num_eggs_relocated | int | 10 | Yes | 100 | Integer | Total eggs relocated |
+| num_micro_eggs_relocated | int | 10 | Yes | 3 | Integer | Number of micro (undeveloped) eggs relocated |
+| original_bottom_egg_depth_cm | numeric | 8,2 | Yes | 35.0 | Decimal (cm) | Depth of bottom egg before relocation |
+| original_chamber_width_cm | varchar | 20 | Yes | 25 | Text / Numeric | Width of original egg chamber |
+| new_bottom_egg_depth_cm | numeric | 8,2 | Yes | 36.0 | Decimal (cm) | Depth of bottom egg in new location |
+| new_chamber_width_cm | varchar | 20 | Yes | 27 | Text / Numeric | Width of new egg chamber |
+| new_top_egg_depth_cm | numeric | 8,2 | Yes | 11.0 | Decimal (cm) | Depth of top egg in new location |
+| new_location_id | int | 10 | Yes | 102 | Integer (FK) | Reference to new nest location (`location_id`) |
+| relocation_notes | varchar | 200 | Yes | Relocated due to flooding risk | Free text | Notes about the relocation process |
+| time_taken_to_relocate | numeric | 4,2 | Yes | 2.5 | Decimal (hours) | Time taken to complete relocation |
 
 #### party
 
