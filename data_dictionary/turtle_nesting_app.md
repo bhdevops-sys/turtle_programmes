@@ -106,8 +106,8 @@ This catalog describes the structure, meaning, and rules of data in a the BH tur
 | Field Name          | SQL Type | Length / Precision | Nullable | Example Value        | Allowed Values / Format | Description                                      |
 |---------------------|----------|-------------------|----------|---------------------|------------------------|--------------------------------------------------|
 | party_type_id       | int      | 10                | No       | 4                   | Integer (0-10)         | Unique identifier for the party type.            |
-| party_type_name     | varchar  | 20                | Yes      | "Birthday"          | String (max 20 chars)  | Name of the party type in English.                |
-| party_type_swahili  | varchar  | 100               | Yes      | "Siku ya Kuzaliwa"  | String (max 100 chars) | Name of the party type in Swahili.                |
+| party_type_name     | varchar  | 20                | Yes      | "Organization"          | String (max 20 chars)  | Name of the party type in English.                |
+| party_type_swahili  | varchar  | 100               | Yes      | "Shirika"  | String (max 100 chars) | Name of the party type in Swahili.                |
 
 
 #### hatching
@@ -118,7 +118,7 @@ This catalog describes the structure, meaning, and rules of data in a the BH tur
 | nest_id | varchar | 20 | No | NEST-2026-015 | Existing nest ID | Reference to the associated nest |
 | actual_hatch_datetime | datetime | — | Yes | 2026-05-12 18:15:00 | YYYY-MM-DD HH:MM:SS | Date and time the nest actually hatched |
 | num_actual_incubation_days | float | — | Yes | 57.5 | Decimal (days) | Total incubation period in days |
-| hatching_outcome_id | int | 10 | No | 1 | Lookup ID | Outcome of hatching (e.g., success, partial success, failed) |
+| hatching_outcome_id | int | 10 | No | 1 | integer (FK) | Reference to hatching_outcome (lookup table) |
 | hatching_notes | varchar | 50 | Yes | All hatchlings emerged successfully | Free text (≤50 chars) | Additional observations about hatching |
 
 #### sex
