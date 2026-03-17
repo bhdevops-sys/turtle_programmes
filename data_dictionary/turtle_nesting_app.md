@@ -7,11 +7,11 @@ This catalog describes the structure, meaning, and rules of data in a the BH tur
 | Field Name | SQL Type | Length | Nullable | Example Value | Allowed Values / Format | Description |
 |------------|----------|--------|----------|---------------|-------------------------|-------------|
 | nest_id | varchar | 20 | No | NEST_2026_001 | Unique string ID | Unique identifier for the turtle nest nest (nest-laid year-nest sequence/number)|
-| turtle_id | int | 10 | No | 1452 | Integer (FK) | Identifier linking to the turtle record |
+| turtle_id | int | 10 | No | 1452 | Integer (FK) | Reference to turtle (lookup table) |
 | laid_date_time | datetime | — | No | 2026-03-15 02:30:00 | YYYY-MM-DD HH:MM:SS | Date and time when the nest was laid |
 | reporter_party_id | varchar | 8 | No | rpt001 | Alphanumeric code (FK) | ID of the person or organization reporting the nest (references party table) |
-| temperature_logger_id_1 | int | 10 | Yes | 34 | Integer (FK) | ID of the first temperature logger placed in the nest (use the serial number of the temp logger) |
-| temperature_logger_id_2 | int | 10 | Yes | 35 | Integer (FK) | ID of the second temperature logger placed in the nest (use the serial number of the temp logger)|
+| temperature_logger_id_1 | int | 10 | Yes | 122434 | Integer (FK) | ID of the first temperature logger placed inside the nest. Reference to temp_logger (lookup table) |
+| temperature_logger_id_2 | int | 10 | Yes | 122435 | Integer (FK) | ID of the second temperature logger placed in control site outside the nest. Reference to temp_logger (lookup table)|
 | nest_location_original_id | int | 10 | No | 87 | Integer (Location reference ID) (FK) | Original nest location reference |
 | distance_from_hwm_m | numeric | 8,2 | Yes | 12.50 | Decimal (meters) | Distance from High Water Mark |
 | turtle_track_width_cm | numeric | 8,2 | Yes | 95.30 | Decimal (centimeters) | Width of turtle track measured |
@@ -73,9 +73,9 @@ This catalog describes the structure, meaning, and rules of data in a the BH tur
 | nest_id | varchar | 20 | No | NEST-2026-015 | Alphanumeric | Reference to the original nest (`nest_id`) |
 | reason_for_relocation | int | 10 | Yes | 1 | Integer (FK) | Reference to reason for relocation (lookup table) |
 | relocation_datetime | datetime | — | Yes | 2026-06-20 07:30:00 | YYYY-MM-DD HH:MM:SS | Date and time of relocation |
-| temp_logger_id_1 | int | 10 | Yes | 101 | Integer (FK) | Reference to first temperature logger used |
-| temp_logger_id_2 | int | 10 | Yes | 102 | Integer (FK) | Reference to second temperature logger used |
-| original_top_egg_depth_cm | numeric | 8,2 | Yes | 10.5 | Decimal (cm) | Depth of top egg before relocation |
+| temp_logger_id_1 | int | 10 | Yes | 107751 | Integer (FK) | Reference to first temperature logger used.Reference to temp_logger (lookup table) |
+| temp_logger_id_2 | int | 10 | Yes | 107752 | Integer (FK) | Reference to second temperature logger used. Reference to temp_logger (lookup table) |
+| original_top_egg_depth_cm | numeric | 8,2 | Yes | 20.5 | Decimal (cm) | Depth of top egg before relocation |
 | num_eggs_relocated | int | 10 | Yes | 100 | Integer | Total eggs relocated |
 | num_micro_eggs_relocated | int | 10 | Yes | 3 | Integer | Number of micro (undeveloped) eggs relocated |
 | original_bottom_egg_depth_cm | numeric | 8,2 | Yes | 35.0 | Decimal (cm) | Depth of bottom egg before relocation |
@@ -83,8 +83,8 @@ This catalog describes the structure, meaning, and rules of data in a the BH tur
 | new_bottom_egg_depth_cm | numeric | 8,2 | Yes | 36.0 | Decimal (cm) | Depth of bottom egg in new location |
 | new_chamber_width_cm | varchar | 20 | Yes | 27 | Text / Numeric | Width of new egg chamber |
 | new_top_egg_depth_cm | numeric | 8,2 | Yes | 11.0 | Decimal (cm) | Depth of top egg in new location |
-| new_location_id | int | 10 | Yes | 102 | Integer (FK) | Reference to new nest location (`location_id`) |
-| relocation_notes | varchar | 200 | Yes | Relocated due to flooding risk | Free text | Notes about the relocation process |
+| new_location_id | int | 10 | Yes | 102 | Integer (FK) | Reference to location (`location_id`) |
+| relocation_notes | varchar | 200 | Yes | Relocated due to being below high water mark| Free text | Notes about the relocation process |
 | time_taken_to_relocate | numeric | 4,2 | Yes | 2.5 | Decimal (hours) | Time taken to complete relocation |
 
 #### party
@@ -92,14 +92,14 @@ This catalog describes the structure, meaning, and rules of data in a the BH tur
 | Field Name | SQL Type | Length / Precision | Nullable | Example Value | Allowed Values / Format | Description |
 |------------|----------|-------------------|----------|---------------|------------------------|-------------|
 | party_id | varchar | 8 | No | RPT001 | Alphanumeric | Unique ID for each party (person or organization) |
-| party_type_id | int | 10 | No | 1 | Integer (FK) | Reference to party type (lookup table) |
-| party_name | varchar | 200 | No | John Doe | Text | Full name of party or organization |
+| party_type_id | int | 10 | No | 1 | Integer (FK) | Reference to party_type (lookup table) |
+| party_name | varchar | 200 | No | Kalume Karisa | Text | Full name of party or organization |
 | party_telephone_1 | varchar | 20 | Yes | +254701234567 | Text / Numeric | Primary contact number |
 | party_telephone_2 | varchar | 20 | Yes | +254712345678 | Text / Numeric | Secondary contact number |
-| party_email | varchar | 50 | Yes | john@example.com | Email format | Email address |
-| site_id | varchar | 8 | No | S001 | Alphanumeric | Reference to site associated with the party |
-| sex_id | varchar | 8 | Yes | M | Alphanumeric / FK | Reference to sex (`sex_id`) |
-| organization_id | varchar | 8 | Yes | ORG001 | Alphanumeric | Reference to associated organization (`organization_id`) |
+| party_email | varchar | 50 | Yes | karisa@baharihai.org | Email format | Email address |
+| site_id | varchar | 8 | No | S001 | Alphanumeric (FK) | Reference to site |
+| sex_id | varchar | 8 | Yes | M | Alphanumeric (FK) | Reference to sex (`sex_id`) |
+| organization_id | varchar | 8 | Yes | baharihai | Alphanumeric | Reference to associated organization in party (`party_id`) |
 
 #### party_type
 
