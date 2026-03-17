@@ -106,8 +106,8 @@ This catalog describes the structure, meaning, and rules of data in a the BH tur
 | Field Name          | SQL Type | Length / Precision | Nullable | Example Value        | Allowed Values / Format | Description                                      |
 |---------------------|----------|-------------------|----------|---------------------|------------------------|--------------------------------------------------|
 | party_type_id       | int      | 10                | No       | 4                   | Integer (0-10)         | Unique identifier for the party type.            |
-| party_type_name     | varchar  | 20                | Yes      | "Organization"          | String (max 20 chars)  | Name of the party type in English.                |
-| party_type_swahili  | varchar  | 100               | Yes      | "Shirika"  | String (max 100 chars) | Name of the party type in Swahili.                |
+| party_type_name     | varchar  | 20                | Yes      | Organization          | String (max 20 chars)  | Name of the party type in English.                |
+| party_type_swahili  | varchar  | 100               | Yes      | Shirika  | String (max 100 chars) | Name of the party type in Swahili.                |
 
 
 #### hatching
@@ -141,11 +141,11 @@ This catalog describes the structure, meaning, and rules of data in a the BH tur
 | Field Name | SQL Type | Length / Precision | Nullable | Example Value | Allowed Values / Format | Description |
 |------------|----------|-------------------|----------|---------------|------------------------|-------------|
 | turtle_id | int | 10 | No | 101 | Integer (Primary Key) | Unique identifier for each turtle |
-| turtle_name | varchar | 50 | Yes | Kima | Text | Name of the turtle (optional, if tagged individually) |
-| species_id | int | 10 | No | 1 | Integer (FK) | Reference to turtle species (`species_id`) |
-| current_tag_1 | varchar | 20 | No | T001 | Text | Primary identification tag on turtle |
-| current_tag_2 | varchar | 20 | No | T002 | Text | Secondary tag (if applicable) |
-| turtle_sex | int | 10 | No | 1 | Integer (FK) | Reference to `sex_id` table |
+| turtle_name | varchar | 50 | Yes | Kanga | Text | Name of the turtle (optional, if tagged individually) |
+| species_id | int | 10 | No | 1 | Integer (FK) | Reference to species (`species_id`) |
+| current_tag_1 | varchar | 20 | No | KBL001 | Text | Primary identification tag on turtle |
+| current_tag_2 | varchar | 20 | No | KBL002 | Text | Secondary tag (if applicable) |
+| turtle_sex | int | 10 | No | 1 | Integer (FK) | Reference to sex table |
 | turtle_notes | varchar | 200 | Yes | Female observed nesting in June | Free text (≤200 chars) | Additional observations about the turtle |
 
 #### hatching_outcome
@@ -161,23 +161,23 @@ This catalog describes the structure, meaning, and rules of data in a the BH tur
 |------------|----------|-------------------|----------|---------------|------------------------|-------------|
 | party_at_hatching_id | int | 10 | No | 1001 | Integer (Primary Key) | Unique identifier for the party-hatching relationship |
 | hatching_id | int | 10 | No | 501 | Integer (FK) | Reference to the hatching record (`hatching_id`) |
-| party_id | varchar | 8 | No | RPT001 | Alphanumeric ID | Reference to the reporting party (`party_id`) |
+| party_id | varchar | 8 | No | pth001 | Alphanumeric ID (FK) | Reference to party (`party_id`) |
 
 #### party_at_nesting
 
 | Field Name | SQL Type | Length / Precision | Nullable | Example Value | Allowed Values / Format | Description |
 |------------|----------|-------------------|----------|---------------|------------------------|-------------|
 | party_at_nesting_id | int | 10 | No | 2001 | Integer (Primary Key) | Unique identifier for the party-nesting relationship |
-| nest_id | varchar | 20 | No | NEST-2026-015 | Alphanumeric ID | Reference to the nest record (`nest_id`) |
-| party_id | varchar | 8 | No | RPT001 | Alphanumeric ID | Reference to the reporting party (`party_id`) |
+| nest_id | varchar | 20 | No | NEST-2026-015 | Alphanumeric ID (FK) | Reference to the turtle_nest  (`nest_id`) |
+| party_id | varchar | 8 | No | ptn001 | Alphanumeric ID (FK) | Reference to the reporting party (`party_id`) |
 
 #### party_at_relocation
 
 | Field Name | SQL Type | Length / Precision | Nullable | Example Value | Allowed Values / Format | Description |
 |------------|----------|-------------------|----------|---------------|------------------------|-------------|
 | party_at_relocation_id | varchar | 8 | No | RPT001 | Alphanumeric ID | Unique identifier for the party involved in a relocation event |
-| relocation_id | int | 10 | No | 301 | Integer (FK) | Reference to the relocation record (`relocation_id`) |
-| party_id | varchar | 8 | No | RPT001 | Alphanumeric ID | Reference to the reporting party (`party_id`) |
+| relocation_id | int | 10 | No | 301 | Integer (FK) | Reference to the nest_relocation (`relocation_id`) |
+| party_id | varchar | 8 | No | ptr001 | Alphanumeric ID (FK) | Reference to the party (`party_id`) |
 
 #### turtle_interaction
 
@@ -185,23 +185,23 @@ This catalog describes the structure, meaning, and rules of data in a the BH tur
 |------------|----------|-------------------|----------|---------------|------------------------|-------------|
 | interaction_id | varchar | 8 | No | INT001 | Alphanumeric ID | Unique identifier for each turtle interaction |
 | old_rescue_id | varchar | 14 | Yes | RESC-2023-001 | Alphanumeric ID | Legacy rescue ID if applicable |
-| turtle_id | int | 10 | No | 101 | Integer (FK) | Reference to turtle record (`turtle_id`) |
-| interaction_type_id | int | 10 | No | 2 | Integer (FK) | Reference to type of interaction (e.g., capture, tagging, release) |
+| turtle_id | int | 10 | No | 101 | Integer (FK) | Reference to turtle (`turtle_id`) |
+| interaction_type_id | int | 10 | No | 2 | Integer (FK) | Reference to interaction_type (e.g., nesting,bycatch) |
 | interaction_date_time | datetime | — | Yes | 2026-06-15 09:45:00 | YYYY-MM-DD HH:MM:SS | Date and time of the interaction |
 | caught_date_time | datetime | — | Yes | 2026-06-15 08:30:00 | YYYY-MM-DD HH:MM:SS | Date and time turtle was caught (if applicable) |
-| capture_method | int | 10 | Yes | 1 | Lookup ID | Method used to capture the turtle |
-| fisher | varchar | 8 | Yes | FISH001 | Alphanumeric ID | Fisher involved in interaction |
-| collected_from | varchar | 8 | Yes | SITE001 | Alphanumeric ID | Source site of turtle |
-| site_caught | varchar | 8 | Yes | SITE002 | Alphanumeric ID | Site where turtle was caught |
-| landing_site | varchar | 8 | Yes | LAND001 | Alphanumeric ID | Landing site for turtle release or record |
+| capture_method | int | 10 | Yes | 1 | Integer (FK) | Method used to capture the turtle. Reference to capture_method (lookup table) |
+| fisher | varchar | 8 | Yes | FISH001 | Alphanumeric ID (FK) | Fisher involved in interaction. Reference to party (lookup table) |
+| collected_from | varchar | 8 | Yes | SITE001 | Alphanumeric ID (FK) | Source party of turtle. Reference to party (lookup table) |
+| site_caught | varchar | 8 | Yes | SITE002 | Alphanumeric ID (FK)| Site where turtle was caught. Reference to site (lookup table)|
+| landing_site | varchar | 8 | Yes | LAND001 | Alphanumeric ID (FK)| Landing site for turtle. Reference to site (lookup table) |
 | turtle_ccl_cm | numeric | 8,2 | No | 112.5 | Decimal (cm) | Curved Carapace Length |
 | turtle_ccw_cm | numeric | 8,2 | No | 87.3 | Decimal (cm) | Curved Carapace Width |
-| turtle_weight_kg | numeric | 8,3 | Yes | 95.250 | Decimal (kg) | Turtle weight |
+| turtle_weight_kg | numeric | 8,3 | Yes | 95.2 | Decimal (kg) | Turtle weight |
 | turtle_characteristics | varchar | 500 | Yes | Small scar on left flipper | Free text | Additional turtle observations |
-| interaction_outcome | int | 10 | No | 1 | Lookup ID | Outcome of interaction (e.g., released, rescued, dead) |
+| interaction_outcome | int | 10 | No | 1 | Integer (FK) | Outcome of interaction (e.g., released, admitted)Reference to interaction_outcome (lookup table) |
 | interaction_notes | varchar | 300 | Yes | Released after tagging | Free text | Notes about interaction |
-| nest_id | varchar | 20 | Yes | NEST-2026-015 | Alphanumeric ID | Reference to associated nest (if applicable) |
-| interaction_gps | varchar | 50 | Yes | -3.25012, 40.89022 | Latitude, Longitude | GPS coordinates of interaction |
+| nest_id | varchar | 20 | Yes | NEST-2026-015 | Alphanumeric ID (FK) | Reference to turtle_nest (if applicable) |
+| interaction_gps | varchar | 50 | Yes | -3.25012, 40.89022 | Latitude, Longitude | GPS coordinates of interaction in decimal degree |
 
 #### party_at_excavation
 
