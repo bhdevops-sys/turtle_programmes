@@ -7,7 +7,7 @@ This catalog describes the structure, meaning, and rules of data in a the BH tur
 | Field Name | SQL Type | Length | Nullable | Example Value | Allowed Values / Format | Description |
 |------------|----------|--------|----------|---------------|-------------------------|-------------|
 | nest_id | varchar | 20 | No | NEST_2026_001 | Unique string ID | Unique identifier for the turtle nest nest (nest-laid year-nest sequence/number)|
-| turtle_id | int | 10 | No | 1452 | Integer | Identifier linking to the turtle record |
+| turtle_id | int | 10 | No | 1452 | Integer (FK) | Identifier linking to the turtle record |
 | laid_date_time | datetime | — | No | 2026-03-15 02:30:00 | YYYY-MM-DD HH:MM:SS | Date and time when the nest was laid |
 | reporter_party_id | varchar | 8 | No | rpt001 | Alphanumeric code (FK) | ID of the person or organization reporting the nest (references party table) |
 | temperature_logger_id_1 | int | 10 | Yes | 34 | Integer (FK) | ID of the first temperature logger placed in the nest (use the serial number of the temp logger) |
