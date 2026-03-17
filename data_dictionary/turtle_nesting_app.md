@@ -6,18 +6,18 @@ This catalog describes the structure, meaning, and rules of data in a the BH tur
 
 | Field Name | SQL Type | Length | Nullable | Example Value | Allowed Values / Format | Description |
 |------------|----------|--------|----------|---------------|-------------------------|-------------|
-| nest_id | varchar | 20 | No | NEST_2026_001 | Unique string ID | Unique identifier for the turtle nest |
+| nest_id | varchar | 20 | No | NEST_2026_001 | Unique string ID | Unique identifier for the turtle nest nest (nest-laid year-nest sequence/number)|
 | turtle_id | int | 10 | No | 1452 | Integer | Identifier linking to the turtle record |
 | laid_date_time | datetime | — | No | 2026-03-15 02:30:00 | YYYY-MM-DD HH:MM:SS | Date and time when the nest was laid |
-| reporter_party_id | varchar | 8 | No | RPT001 | Alphanumeric code | ID of the person or organization reporting the nest |
-| temperature_logger_id_1 | int | 10 | Yes | 34 | Integer | ID of the first temperature logger placed in the nest |
-| temperature_logger_id_2 | int | 10 | Yes | 35 | Integer | ID of the second temperature logger placed in the nest |
-| nest_location_original_id | int | 10 | No | 87 | Integer (Location reference ID) | Original nest location reference |
+| reporter_party_id | varchar | 8 | No | rpt001 | Alphanumeric code (FK) | ID of the person or organization reporting the nest (references party table) |
+| temperature_logger_id_1 | int | 10 | Yes | 34 | Integer (FK) | ID of the first temperature logger placed in the nest (use the serial number of the temp logger) |
+| temperature_logger_id_2 | int | 10 | Yes | 35 | Integer (FK) | ID of the second temperature logger placed in the nest (use the serial number of the temp logger)|
+| nest_location_original_id | int | 10 | No | 87 | Integer (Location reference ID) (FK) | Original nest location reference |
 | distance_from_hwm_m | numeric | 8,2 | Yes | 12.50 | Decimal (meters) | Distance from High Water Mark |
 | turtle_track_width_cm | numeric | 8,2 | Yes | 95.30 | Decimal (centimeters) | Width of turtle track measured |
 | reason_for_no_track_width | int | 10 | Yes | 2 | Reference code (lookup table) | Reason track width was not recorded |
 | is_relocated | bit | 1 | Yes | 1 | 0 = No, 1 = Yes | Indicates if the nest was relocated |
-| expected_hatch_datetime | smalldatetime | — | Yes | 2026-05-12 18:00 | YYYY-MM-DD HH:MM | Estimated hatch date and time |
+| expected_hatch_datetime | smalldatetime | — | Yes | 2026-05-12 18:00 | YYYY-MM-DD HH:MM | Estimated hatching date and time |
 | nest_notes | varchar | 300 | Yes | Nest near vegetation line | Free text (max 300 chars) | Additional notes about the nest |
 
 #### nest_excavation
@@ -26,16 +26,16 @@ This catalog describes the structure, meaning, and rules of data in a the BH tur
 |------------|----------|-------------------|----------|---------------|-------------------------|-------------|
 | nest_excavation_id | int | 10 | No | 4501 | Integer (Primary Key) | Unique excavation record identifier |
 | nest_id | varchar | 20 | No | NEST-2026-015 | Existing nest ID | Reference to nest record |
-| excavation_datetime | datetime | — | No | 2026-05-18 09:30:00 | YYYY-MM-DD HH:MM:SS | Date and time nest excavation occurred |
-| sun_exposure_type_id | int | 10 | No | 2 | Lookup ID | Type of sun exposure at nest site |
-| top_shell_depth_cm | float | — | No | 35.5 | Decimal (cm) | Depth of top eggshell layer |
-| bottom_shell_depth_cm | float | — | No | 62.3 | Decimal (cm) | Depth of bottom eggshell layer |
+| excavation_datetime | datetime | — | No | 2026-05-18 09:30:00 | YYYY-MM-DD HH:MM:SS | Date and time when nest was excavated |
+| sun_exposure_type_id | int | 10 | No | 2 | Integer (FK) | reference to sun_exposure_type |
+| top_shell_depth_cm | float | — | No | 35.5 | Decimal (cm) | Depth of top eggshell layer in the nest |
+| bottom_shell_depth_cm | float | — | No | 62.3 | Decimal (cm) | Depth of bottom eggshell layer in the nest |
 | num_eggs_empty | smallint | — | No | 10 | Integer ≥ 0 | Number of empty eggshells |
 | num_eggs_early_dev | smallint | — | No | 4 | Integer ≥ 0 | Eggs with early embryo development |
 | num_eggs_under_dev | smallint | — | No | 2 | Integer ≥ 0 | Eggs with underdeveloped embryos |
 | num_eggs_mid_dev | smallint | — | No | 3 | Integer ≥ 0 | Eggs with mid-stage development |
 | num_eggs_late_dev | smallint | — | No | 1 | Integer ≥ 0 | Eggs with late-stage development |
-| num_eggs_micro | smallint | — | No | 0 | Integer ≥ 0 | Microbial or fungal infected eggs |
+| num_eggs_micro | smallint | — | No | 0 | Integer ≥ 0 | small than normal size eggs |
 | num_eggs_unknown | smallint | — | No | 2 | Integer ≥ 0 | Eggs with unknown status |
 | num_eggs_depredated | smallint | — | No | 5 | Integer ≥ 0 | Eggs predated by animals |
 | num_eggs_yolkless | smallint | — | No | 1 | Integer ≥ 0 | Yolkless eggs |
@@ -47,14 +47,14 @@ This catalog describes the structure, meaning, and rules of data in a the BH tur
 | num_total_eggs_successful | smallint | — | No | 95 | Integer ≥ 0 | Total successful hatchlings |
 | num_relocated_eggs_missing | smallint | — | No | 2 | Integer ≥ 0 | Relocated eggs missing |
 | num_relocated_eggs_extra | smallint | — | No | 1 | Integer ≥ 0 | Extra eggs found in relocated nest |
-| num_total_eggs | smallint | — | No | 112 | Integer ≥ 0 | Total eggs originally in nest |
+| num_total_eggs | smallint | — | No | 112 | Integer ≥ 0 | Total eggs found in the nest |
 | nest_success_rate | float | — | No | 84.8 | Percentage (0–100) | Overall nest success rate |
 | rate_eggs_empty | float | — | No | 9.1 | Percentage (0–100) | Rate of empty eggs |
 | rate_eggs_early_dev | float | — | No | 3.6 | Percentage (0–100) | Rate of early embryo development eggs |
 | rate_eggs_under_dev | float | — | No | 1.8 | Percentage (0–100) | Rate of underdeveloped eggs |
 | rate_eggs_mid_dev | float | — | No | 2.7 | Percentage (0–100) | Rate of mid-stage embryo development |
 | rate_eggs_late_dev | float | — | No | 0.9 | Percentage (0–100) | Rate of late-stage embryo development |
-| rate_eggs_micro | float | — | No | 0.0 | Percentage (0–100) | Rate of microbial infection |
+| rate_eggs_micro | float | — | No | 0.0 | Percentage (0–100) | Rate of small than normal size eggs |
 | rate_eggs_unknown | float | — | No | 1.8 | Percentage (0–100) | Rate of unknown egg condition |
 | rate_eggs_depredated | float | — | No | 4.5 | Percentage (0–100) | Rate of egg predation |
 | rate_eggs_yolkless | float | — | No | 0.9 | Percentage (0–100) | Rate of yolkless eggs |
