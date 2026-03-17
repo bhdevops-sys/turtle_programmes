@@ -18,7 +18,7 @@ This catalog describes the structure, meaning, and rules of data in a the BH tur
 | reason_for_no_track_width | int | 10 | Yes | 2 | Reference code (lookup table) | Reason track width was not recorded |
 | is_relocated | bit | 1 | Yes | 1 | 0 = No, 1 = Yes | Indicates if the nest was relocated |
 | expected_hatch_datetime | smalldatetime | — | Yes | 2026-05-12 18:00 | YYYY-MM-DD HH:MM | Estimated hatching date and time |
-| nest_notes | varchar | 300 | Yes | Nest near vegetation line | Free text (max 300 chars) | Additional notes about the nest |
+| nest_notes | varchar | 300 | Yes | Nest near beach access road | Free text (max 300 chars) | Additional notes about the nest |
 
 #### nest_excavation
 
@@ -62,7 +62,7 @@ This catalog describes the structure, meaning, and rules of data in a the BH tur
 | rate_hatchlings_pipped_live | float | — | No | 2.7 | Percentage (0–100) | Rate of live pipped hatchlings |
 | rate_hatchlings_dead | float | — | No | 3.6 | Percentage (0–100) | Rate of dead hatchlings |
 | rate_hatchlings_live | float | — | No | 80.4 | Percentage (0–100) | Rate of live hatchlings |
-| nest_failure_cause | int | 10 | No | 3 | Lookup ID | Cause of nest failure |
+| nest_failure_cause | int | 10 | No | 3 | Lookup ID (FK) | Reference to nest_failure_cause (lookup table) |
 | excavation_notes | varchar | 300 | Yes | Predation signs by monitor lizard | Free text (≤300 characters) | Additional excavation observations |
 
 #### nest_relocation
