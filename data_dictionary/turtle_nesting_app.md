@@ -71,7 +71,7 @@ This catalog describes the structure, meaning, and rules of data in a the BH tur
 |------------|----------|-------------------|----------|---------------|------------------------|-------------|
 | nest_relocation_id | int | 10 | No | 501 | Integer (Primary Key) | Unique ID for each nest relocation |
 | nest_id | varchar | 20 | No | NEST-2026-015 | Alphanumeric | Reference to the original nest (`nest_id`) |
-| reason_for_relocation | int | 10 | Yes | 1 | Integer (FK) | Reference to reason for relocation (lookup table) |
+| reason_for_relocation | int | 10 | Yes | 1 | Integer (FK) | Reference to reason_for_relocation (lookup table) |
 | relocation_datetime | datetime | — | Yes | 2026-06-20 07:30:00 | YYYY-MM-DD HH:MM:SS | Date and time of relocation |
 | temp_logger_id_1 | int | 10 | Yes | 107751 | Integer (FK) | Reference to first temperature logger used.Reference to temp_logger (lookup table) |
 | temp_logger_id_2 | int | 10 | Yes | 107752 | Integer (FK) | Reference to second temperature logger used. Reference to temp_logger (lookup table) |
@@ -93,13 +93,13 @@ This catalog describes the structure, meaning, and rules of data in a the BH tur
 |------------|----------|-------------------|----------|---------------|------------------------|-------------|
 | party_id | varchar | 8 | No | RPT001 | Alphanumeric | Unique ID for each party (person,group or organization) |
 | party_type_id | int | 10 | No | 1 | Integer (FK) | Reference to party_type (lookup table) |
-| party_name | varchar | 200 | No | Kalume Karisa | Text | Full name of party or organization |
+| party_name | varchar | 200 | No | Kalume Karisa | Text | Full name of party, group or organization |
 | party_telephone_1 | varchar | 20 | Yes | +254701234567 | Text / Numeric | Primary contact number |
 | party_telephone_2 | varchar | 20 | Yes | +254712345678 | Text / Numeric | Secondary contact number |
 | party_email | varchar | 50 | Yes | karisa@baharihai.org | Email format | Email address |
 | site_id | varchar | 8 | No | S001 | Alphanumeric (FK) | Reference to site |
 | sex_id | varchar | 8 | Yes | Male | Alphanumeric (FK) | Reference to sex (`sex_id`) |
-| organization_id | varchar | 8 | Yes | baharihai | Alphanumeric | Reference to associated organization in party (`party_id`) |
+| organization_id | varchar | 8 | Yes | baharihai | Alphanumeric (FK)| Reference to party (`party_id`) |
 
 #### party_type
 
@@ -119,15 +119,15 @@ This catalog describes the structure, meaning, and rules of data in a the BH tur
 | actual_hatch_datetime | datetime | — | Yes | 2026-05-12 18:15:00 | YYYY-MM-DD HH:MM:SS | Date and time the nest actually hatched |
 | num_actual_incubation_days | float | — | Yes | 57.5 | Decimal (days) | Total incubation period in days |
 | hatching_outcome_id | int | 10 | No | 1 | integer (FK) | Reference to hatching_outcome (lookup table) |
-| hatching_notes | varchar | 50 | Yes | All hatchlings emerged successfully | Free text (≤50 chars) | Additional observations about hatching |
+| hatching_notes | varchar | 50 | Yes | All hatchlings emerged successfully | Text (≤50 chars) | Additional observations about hatching |
 
 #### sex
 
 | Field Name | SQL Type | Length / Precision | Nullable | Example Value | Allowed Values / Format | Description |
 |------------|----------|-------------------|----------|---------------|------------------------|-------------|
 | sex_id | int | 10 | No | 1 | Integer (Primary Key) | Unique ID for sex/gender category |
-| sex_name | varchar | 20 | No | Male | Text | Name of sex/gender in English |
-| sex_name_swahili | varchar | 100 | Yes | Mwanaume | Text | Name of sex/gender in Swahili (optional) |
+| sex_name | varchar | 20 | No | Male | Text | Name of sex in English |
+| sex_name_swahili | varchar | 100 | Yes | Mwanaume | Text | Name of sex in Swahili (optional) |
 
 #### species
 
@@ -141,9 +141,9 @@ This catalog describes the structure, meaning, and rules of data in a the BH tur
 | Field Name | SQL Type | Length / Precision | Nullable | Example Value | Allowed Values / Format | Description |
 |------------|----------|-------------------|----------|---------------|------------------------|-------------|
 | turtle_id | int | 10 | No | 101 | Integer (Primary Key) | Unique identifier for each turtle |
-| turtle_name | varchar | 50 | Yes | Kanga | Text | Name of the turtle (optional, if tagged individually) |
+| turtle_name | varchar | 50 | Yes | Kanga | Text | Name of the turtle (optional) |
 | species_id | int | 10 | No | 1 | Integer (FK) | Reference to species (`species_id`) |
-| current_tag_1 | varchar | 20 | No | KBL001 | Text | Primary identification tag on turtle |
+| current_tag_1 | varchar | 20 | No | KBL001 | Text | Primary tag on turtle |
 | current_tag_2 | varchar | 20 | No | KBL002 | Text | Secondary tag (if applicable) |
 | turtle_sex | int | 10 | No | 1 | Integer (FK) | Reference to sex table |
 | turtle_notes | varchar | 200 | Yes | Female observed nesting in June | Free text (≤200 chars) | Additional observations about the turtle |
@@ -168,8 +168,8 @@ This catalog describes the structure, meaning, and rules of data in a the BH tur
 | Field Name | SQL Type | Length / Precision | Nullable | Example Value | Allowed Values / Format | Description |
 |------------|----------|-------------------|----------|---------------|------------------------|-------------|
 | party_at_nesting_id | int | 10 | No | 2001 | Integer (Primary Key) | Unique identifier for the party-nesting relationship |
-| nest_id | varchar | 20 | No | NEST-2026-015 | Alphanumeric ID (FK) | Reference to the turtle_nest  (`nest_id`) |
-| party_id | varchar | 8 | No | ptn001 | Alphanumeric ID (FK) | Reference to the reporting party (`party_id`) |
+| nest_id | varchar | 20 | No | NEST-2026-015 | Alphanumeric ID (FK) | Reference to turtle_nest  (`nest_id`) |
+| party_id | varchar | 8 | No | ptn001 | Alphanumeric ID (FK) | Reference to party (`party_id`) |
 
 #### party_at_relocation
 
@@ -177,7 +177,7 @@ This catalog describes the structure, meaning, and rules of data in a the BH tur
 |------------|----------|-------------------|----------|---------------|------------------------|-------------|
 | party_at_relocation_id | varchar | 8 | No | RPT001 | Alphanumeric ID | Unique identifier for the party involved in a relocation event |
 | relocation_id | int | 10 | No | 301 | Integer (FK) | Reference to the nest_relocation (`relocation_id`) |
-| party_id | varchar | 8 | No | ptr001 | Alphanumeric ID (FK) | Reference to the party (`party_id`) |
+| party_id | varchar | 8 | No | ptr001 | Alphanumeric ID (FK) | Reference to party (`party_id`) |
 
 #### turtle_interaction
 
@@ -200,7 +200,7 @@ This catalog describes the structure, meaning, and rules of data in a the BH tur
 | turtle_characteristics | varchar | 500 | Yes | Small scar on left flipper | Free text | Additional turtle observations |
 | interaction_outcome | int | 10 | No | 1 | Integer (FK) | Outcome of interaction (e.g., released, admitted)Reference to interaction_outcome (lookup table) |
 | interaction_notes | varchar | 300 | Yes | Released after tagging | Free text | Notes about interaction |
-| nest_id | varchar | 20 | Yes | NEST-2026-015 | Alphanumeric ID (FK) | Reference to turtle_nest (if applicable) |
+| nest_id | varchar | 20 | Yes | NEST-2026-015 | Alphanumeric ID (FK) | Reference to turtle_nest |
 | interaction_gps | varchar | 50 | Yes | -3.25012, 40.89022 | Latitude, Longitude | GPS coordinates of interaction in decimal degree |
 
 #### party_at_excavation
@@ -209,7 +209,7 @@ This catalog describes the structure, meaning, and rules of data in a the BH tur
 |------------|----------|-------------------|----------|---------------|------------------------|-------------|
 | party_at_excavation_id | int | 10 | No | 3001 | Integer (Primary Key) | Unique identifier for the party-excavation relationship |
 | nest_excavation_id | int | 10 | No | 4501 | Integer (FK) | Reference to the nest excavation record (`nest_excavation_id`) |
-| party_id | varchar | 8 | No | RPT001 | Alphanumeric ID | Reference to the reporting party (`party_id`) |
+| party_id | varchar | 8 | No | RPT001 | Alphanumeric ID | Reference to party (`party_id`) |
 
 #### temp_logger
 
@@ -230,7 +230,7 @@ This catalog describes the structure, meaning, and rules of data in a the BH tur
 | Field Name | SQL Type | Length / Precision | Nullable | Example Value | Allowed Values / Format | Description |
 |------------|----------|-------------------|----------|---------------|------------------------|-------------|
 | sun_exposure_type_id | int | 10 | No | 1 | Integer (Primary Key) | Unique ID for sun exposure category |
-| sun_exposure_type_name | varchar | 50 | No | Full Sun | Text | Name of sun exposure type (e.g., Full Sun, Partial Shade, Shade) |
+| sun_exposure_type_name | varchar | 50 | No | Full Sun | Text | Name of sun exposure type (e.g.Partial Shade, Shade) |
 
 #### location
 
