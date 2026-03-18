@@ -242,8 +242,8 @@ This catalog describes the structure, meaning, and rules of data in a the BH tur
 | y_coordinate | decimal | 10,4 | Yes | -3.2567 | Decimal | Latitude (or projected Y coordinate) |
 | x_coordinate | decimal | 11,4 | Yes | 40.8912 | Decimal | Longitude (or projected X coordinate) |
 | location_name | nvarchar | 50 | Yes | Turtle Nesting Beach A | Text | Descriptive name of the location |
-| nearest_landmark | nvarchar | 50 | Yes | Lighthouse | Text | Nearest landmark for reference |
-| location_type_id | int | 10 | No | 1 | Integer (FK) | Type of location (e.g., nesting site, hatchery, patrol site) |
+| nearest_landmark | nvarchar | 50 | Yes | Beach access road | Text | Nearest landmark for reference |
+| location_type_id | int | 10 | No | 1 | Integer (FK) | Type of location (e.g., nesting site, landing site, hotel). Reference to location_type (lookup table) |
 
 #### site
 
@@ -251,13 +251,13 @@ This catalog describes the structure, meaning, and rules of data in a the BH tur
 |------------|----------|-------------------|----------|---------------|------------------------|-------------|
 | site_id | varchar | 8 | No | S001 | Alphanumeric | Unique ID for the site |
 | site_name | varchar | 50 | No | Diani Beach | Text | Name of the site |
-| area_id | int | 10 | No | 1 | Integer (FK) | Reference to administrative area / region |
-| foraging_ground_id | int | 10 | Yes | 5 | Integer (FK) | Reference to associated foraging ground (if applicable) |
+| area_id | int | 10 | No | 1 | Integer (FK) | Reference to area (lookup table) |
+| foraging_ground_id | int | 10 | Yes | 5 | Integer (FK) | Reference to foraging_ground (lookup table)|
 | is_capture_site | bit | 1 | Yes | 1 | 0 / 1 | Flag if site is used for turtle capture |
-| is_landing_site | bit | 1 | Yes | 0 | 0 / 1 | Flag if site is used for turtle landing |
+| is_landing_site | bit | 1 | Yes | 0 | 0 / 1 | Flag if site is used for turtle/fish landing |
 | is_nesting_site | bit | 1 | Yes | 1 | 0 / 1 | Flag if site is used for turtle nesting |
 | is_release_site | bit | 1 | Yes | 0 | 0 / 1 | Flag if site is used for turtle release |
-| is_plot | bit | 1 | Yes | 0 | 0 / 1 | Flag if site contains a monitored plot |
+| is_plot | bit | 1 | Yes | 0 | 0 / 1 | Flag if site contains a plot |
 | is_hotel | bit | 1 | Yes | 1 | 0 / 1 | Flag if site is part of a hotel property |
 | is_private | bit | 1 | Yes | 0 | 0 / 1 | Flag if site is privately owned |
 
@@ -267,7 +267,7 @@ This catalog describes the structure, meaning, and rules of data in a the BH tur
 |------------|----------|-------------------|----------|---------------|------------------------|-------------|
 | area_id | int | 10 | No | 1 | Integer (Primary Key) | Unique ID for each area/region |
 | area_name | varchar | 20 | No | Lamu County | Text | Name of the area |
-| admin_2 | varchar | 20 | Yes | Lamu East | Text | Lower administrative unit (e.g., sub-county, district) |
+| admin_2 | varchar | 20 | Yes | Lamu East | Text | Lower administrative unit (e.g., sub-county) |
 | admin_1 | varchar | 20 | Yes | Lamu County | Text | Mid-level administrative unit (e.g., county) |
 | admin_0 | varchar | 20 | Yes | Kenya | Text | Country / top-level administrative unit |
 
