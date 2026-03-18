@@ -17,7 +17,7 @@ This catalog describes the structure, meaning, and rules of data in a the BH tur
 | turtle_track_width_cm | numeric | 8,2 | Yes | 95.30 | Decimal (centimeters) | Width of turtle track measured |
 | reason_for_no_track_width | int | 10 | Yes | 2 | Reference code (lookup table) | Reason track width was not recorded |
 | is_relocated | bit | 1 | Yes | 1 | 0 = No, 1 = Yes | Indicates if the nest was relocated |
-| expected_hatch_datetime | smalldatetime | — | Yes | 2026-05-12 18:00 | YYYY-MM-DD HH:MM | Estimated hatching date and time |
+| expected_hatch_datetime | datetime | — | Yes | 2026-05-12 18:00:00 | YYYY-MM-DD HH:MM:SS | Estimated hatching date and time |
 | nest_notes | varchar | 300 | Yes | Nest near beach access road | Free text (max 300 chars) | Additional notes about the nest |
 
 #### nest_excavation
@@ -91,14 +91,14 @@ This catalog describes the structure, meaning, and rules of data in a the BH tur
 
 | Field Name | SQL Type | Length / Precision | Nullable | Example Value | Allowed Values / Format | Description |
 |------------|----------|-------------------|----------|---------------|------------------------|-------------|
-| party_id | varchar | 8 | No | RPT001 | Alphanumeric | Unique ID for each party (person or organization) |
+| party_id | varchar | 8 | No | RPT001 | Alphanumeric | Unique ID for each party (person,group or organization) |
 | party_type_id | int | 10 | No | 1 | Integer (FK) | Reference to party_type (lookup table) |
 | party_name | varchar | 200 | No | Kalume Karisa | Text | Full name of party or organization |
 | party_telephone_1 | varchar | 20 | Yes | +254701234567 | Text / Numeric | Primary contact number |
 | party_telephone_2 | varchar | 20 | Yes | +254712345678 | Text / Numeric | Secondary contact number |
 | party_email | varchar | 50 | Yes | karisa@baharihai.org | Email format | Email address |
 | site_id | varchar | 8 | No | S001 | Alphanumeric (FK) | Reference to site |
-| sex_id | varchar | 8 | Yes | M | Alphanumeric (FK) | Reference to sex (`sex_id`) |
+| sex_id | varchar | 8 | Yes | Male | Alphanumeric (FK) | Reference to sex (`sex_id`) |
 | organization_id | varchar | 8 | Yes | baharihai | Alphanumeric | Reference to associated organization in party (`party_id`) |
 
 #### party_type
