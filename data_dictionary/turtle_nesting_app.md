@@ -257,7 +257,7 @@ This catalog describes the structure, meaning, and rules of data in a the BH tur
 | is_landing_site | bit | 1 | Yes | 0 | 0 / 1 | Flag if site is used for turtle/fish landing |
 | is_nesting_site | bit | 1 | Yes | 1 | 0 / 1 | Flag if site is used for turtle nesting |
 | is_release_site | bit | 1 | Yes | 0 | 0 / 1 | Flag if site is used for turtle release |
-| is_plot | bit | 1 | Yes | 0 | 0 / 1 | Flag if site contains a plot |
+| is_plot | bit | 1 | Yes | 0 | 0 / 1 | Flag if site is a beach plot |
 | is_hotel | bit | 1 | Yes | 1 | 0 / 1 | Flag if site is part of a hotel property |
 | is_private | bit | 1 | Yes | 0 | 0 / 1 | Flag if site is privately owned |
 
@@ -267,7 +267,7 @@ This catalog describes the structure, meaning, and rules of data in a the BH tur
 |------------|----------|-------------------|----------|---------------|------------------------|-------------|
 | area_id | int | 10 | No | 1 | Integer (Primary Key) | Unique ID for each area/region |
 | area_name | varchar | 20 | No | Lamu County | Text | Name of the area |
-| admin_2 | varchar | 20 | Yes | Lamu East | Text | Lower administrative unit (e.g., sub-county) |
-| admin_1 | varchar | 20 | Yes | Lamu County | Text | Mid-level administrative unit (e.g., county) |
-| admin_0 | varchar | 20 | Yes | Kenya | Text | Country / top-level administrative unit |
+| admin_2 | varchar | 20 | Yes | Malindi | Text | Lower administrative unit (sub-county) |
+| admin_1 | varchar | 20 | Yes | Kilifi | Text | Mid-level administrative unit (county) |
+| admin_0 | varchar | 20 | Yes | Kenya | Text | top-level administrative unit (Country)|
 
