@@ -20,6 +20,8 @@ This catalog describes the structure, meaning, and rules of data in a the BH tur
 | expected_hatch_datetime | datetime | — | Yes | 2026-05-12 18:00:00 | YYYY-MM-DD HH:MM:SS | Estimated hatching date and time |
 | nest_notes | varchar | 300 | Yes | Nest near beach access road | Free text (max 300 chars) | Additional notes about the nest |
 
+---
+
 #### nest_excavation
 
 | Field Name | SQL Type | Length / Precision | Nullable | Example Value | Allowed Values / Format | Description |
@@ -65,6 +67,7 @@ This catalog describes the structure, meaning, and rules of data in a the BH tur
 | nest_failure_cause | int | 10 | No | 3 | Lookup ID (FK) | Reference to nest_failure_cause (lookup table) |
 | excavation_notes | varchar | 300 | Yes | Predation signs by monitor lizard | Free text (≤300 characters) | Additional excavation observations |
 
+---
 #### nest_relocation
 
 | Field Name | SQL Type | Length / Precision | Nullable | Example Value | Allowed Values / Format | Description |
@@ -87,6 +90,7 @@ This catalog describes the structure, meaning, and rules of data in a the BH tur
 | relocation_notes | varchar | 200 | Yes | Relocated due to being below high water mark| Free text | Notes about the relocation process |
 | time_taken_to_relocate | numeric | 4,2 | Yes | 2.5 | Decimal (hours) | Time taken to complete relocation |
 
+---
 #### party
 
 | Field Name | SQL Type | Length / Precision | Nullable | Example Value | Allowed Values / Format | Description |
@@ -101,6 +105,7 @@ This catalog describes the structure, meaning, and rules of data in a the BH tur
 | sex_id | varchar | 8 | Yes | Male | Alphanumeric (FK) | Reference to sex (`sex_id`) |
 | organization_id | varchar | 8 | Yes | baharihai | Alphanumeric (FK)| Reference to party (`party_id`) |
 
+---
 #### party_type
 
 | Field Name          | SQL Type | Length / Precision | Nullable | Example Value        | Allowed Values / Format | Description                                      |
@@ -109,7 +114,33 @@ This catalog describes the structure, meaning, and rules of data in a the BH tur
 | party_type_name     | varchar  | 20                | Yes      | Organization          | String (max 20 chars)  | Name of the party type in English.                |
 | party_type_swahili  | varchar  | 100               | Yes      | Shirika  | String (max 100 chars) | Name of the party type in Swahili.                |
 
+---
+#### interaction_type
 
+| Field Name | SQL Type | Length | Nullable | Example Value | Allowed Values / Format | Description |
+|------------|----------|--------|----------|---------------|--------------------------|-------------|
+| interaction_type_id | int | — | No | 1 | Integer, unique | Unique identifier for interaction type |
+| interaction_type_name | varchar | 30 | No | nesting | Predefined categories (e.g., nesting,bycatch) | Type of interaction with the turtle |
+
+---
+#### capture_method
+
+| Field Name | SQL Type | Length | Nullable | Example Value | Allowed Values / Format | Description |
+|------------|----------|--------|----------|---------------|--------------------------|-------------|
+| capture_method_id | int | — | No | 1 | Integer, unique | Unique identifier for capture method |
+| capture_method_name | varchar | 30 | No | Net| Predefined categories (e.g., Net, line, collected floater) | Method used to capture the turtle |
+| capture_method_explanation | varchar | 200 | Yes | Captured as bycatch | Free text | Additional explanation or details about the capture method |
+
+---
+#### interaction_outcome
+
+| Field Name | SQL Type | Length | Nullable | Example Value | Allowed Values / Format | Description |
+|------------|----------|--------|----------|---------------|--------------------------|-------------|
+| outcome_id | int | — | No | 1 | Integer, unique | Unique identifier for outcome |
+| outcome_name | varchar | 30 | No | admitted | Predefined categories (e.g., Released, admitted in rehabilitation center) | Outcome of the interaction|
+| outcome_explanation | varchar | 500 | Yes | Turtle was treated and safely released back into the ocean | Free text | Additional details describing the outcome |
+
+---
 #### hatching
 
 | Field Name | SQL Type | Length / Precision | Nullable | Example Value | Allowed Values / Format | Description |
@@ -121,6 +152,7 @@ This catalog describes the structure, meaning, and rules of data in a the BH tur
 | hatching_outcome_id | int | 10 | No | 1 | integer (FK) | Reference to hatching_outcome (lookup table) |
 | hatching_notes | varchar | 50 | Yes | All hatchlings emerged successfully | Text (≤50 chars) | Additional observations about hatching |
 
+---
 #### sex
 
 | Field Name | SQL Type | Length / Precision | Nullable | Example Value | Allowed Values / Format | Description |
@@ -129,6 +161,7 @@ This catalog describes the structure, meaning, and rules of data in a the BH tur
 | sex_name | varchar | 20 | No | Male | Text | Name of sex in English |
 | sex_name_swahili | varchar | 100 | Yes | Mwanaume | Text | Name of sex in Swahili (optional) |
 
+---
 #### species
 
 | Field Name | SQL Type | Length / Precision | Nullable | Example Value | Allowed Values / Format | Description |
@@ -136,6 +169,7 @@ This catalog describes the structure, meaning, and rules of data in a the BH tur
 | species_id | int | 10 | No | 1 | Integer (Primary Key) | Unique ID for each turtle species |
 | species_name | varchar | 20 | No | Green Turtle | Text | Name of the turtle species |
 
+---
 #### turtle
 
 | Field Name | SQL Type | Length / Precision | Nullable | Example Value | Allowed Values / Format | Description |
@@ -148,6 +182,7 @@ This catalog describes the structure, meaning, and rules of data in a the BH tur
 | turtle_sex | int | 10 | No | 1 | Integer (FK) | Reference to sex table |
 | turtle_notes | varchar | 200 | Yes | Female observed nesting in June | Free text (≤200 chars) | Additional observations about the turtle |
 
+---
 #### hatching_outcome
 
 | Field Name | SQL Type | Length / Precision | Nullable | Example Value | Allowed Values / Format | Description |
@@ -155,6 +190,14 @@ This catalog describes the structure, meaning, and rules of data in a the BH tur
 | hatching_outcome_id | int | 10 | No | 1 | Integer (Primary Key) | Unique ID for hatching outcome |
 | hatching_outcome_name | varchar | 30 | No | Successful | Text | Name/description of hatching outcome |
 
+---
+####  foraging_ground
+| Field Name | SQL Type | Length | Nullable | Example Value | Allowed Values / Format | Description |
+|------------|----------|--------|----------|---------------|--------------------------|-------------|
+| foraging_ground_id | int | — | No | 1 | Integer | Unique foraging ground ID |
+| foraging_ground_name | varchar | 10 | No | Reef | Predefined names | Name of foraging ground |
+
+---
 #### party_at_hatching
 
 | Field Name | SQL Type | Length / Precision | Nullable | Example Value | Allowed Values / Format | Description |
@@ -163,6 +206,7 @@ This catalog describes the structure, meaning, and rules of data in a the BH tur
 | hatching_id | int | 10 | No | 501 | Integer (FK) | Reference to the hatching record (`hatching_id`) |
 | party_id | varchar | 8 | No | pth001 | Alphanumeric ID (FK) | Reference to party (`party_id`) |
 
+---
 #### party_at_nesting
 
 | Field Name | SQL Type | Length / Precision | Nullable | Example Value | Allowed Values / Format | Description |
@@ -171,6 +215,7 @@ This catalog describes the structure, meaning, and rules of data in a the BH tur
 | nest_id | varchar | 20 | No | NEST-2026-015 | Alphanumeric ID (FK) | Reference to turtle_nest  (`nest_id`) |
 | party_id | varchar | 8 | No | ptn001 | Alphanumeric ID (FK) | Reference to party (`party_id`) |
 
+---
 #### party_at_relocation
 
 | Field Name | SQL Type | Length / Precision | Nullable | Example Value | Allowed Values / Format | Description |
@@ -179,6 +224,7 @@ This catalog describes the structure, meaning, and rules of data in a the BH tur
 | relocation_id | int | 10 | No | 301 | Integer (FK) | Reference to the nest_relocation (`relocation_id`) |
 | party_id | varchar | 8 | No | ptr001 | Alphanumeric ID (FK) | Reference to party (`party_id`) |
 
+---
 #### turtle_interaction
 
 | Field Name | SQL Type | Length / Precision | Nullable | Example Value | Allowed Values / Format | Description |
@@ -203,6 +249,7 @@ This catalog describes the structure, meaning, and rules of data in a the BH tur
 | nest_id | varchar | 20 | Yes | NEST-2026-015 | Alphanumeric ID (FK) | Reference to turtle_nest |
 | interaction_gps | varchar | 50 | Yes | -3.25012, 40.89022 | Latitude, Longitude | GPS coordinates of interaction in decimal degree |
 
+---
 #### party_at_excavation
 
 | Field Name | SQL Type | Length / Precision | Nullable | Example Value | Allowed Values / Format | Description |
@@ -211,6 +258,7 @@ This catalog describes the structure, meaning, and rules of data in a the BH tur
 | nest_excavation_id | int | 10 | No | 4501 | Integer (FK) | Reference to the nest excavation record (`nest_excavation_id`) |
 | party_id | varchar | 8 | No | RPT001 | Alphanumeric ID | Reference to party (`party_id`) |
 
+---
 #### temp_logger
 
 | Field Name | SQL Type | Length / Precision | Nullable | Example Value | Allowed Values / Format | Description |
@@ -218,6 +266,7 @@ This catalog describes the structure, meaning, and rules of data in a the BH tur
 | temp_logger_id | int | 10 | No | 101 | Integer (Primary Key) | Unique identifier for each temperature logger |
 | serial_no | varchar | 30 | Yes | TL-2026-001 | Alphanumeric | Serial number of the logger device |
 
+---
 #### nest_failure_cause
 
 | Field Name | SQL Type | Length / Precision | Nullable | Example Value | Allowed Values / Format | Description |
@@ -225,6 +274,7 @@ This catalog describes the structure, meaning, and rules of data in a the BH tur
 | nest_failure_cause_id | int | 10 | No | 1 | Integer (Primary Key) | Unique ID for each nest failure cause |
 | nest_failure_cause_name | varchar | 50 | Yes | Predation | Text | Description of why the nest failed |
 
+---
 #### sun_exposure_type
 
 | Field Name | SQL Type | Length / Precision | Nullable | Example Value | Allowed Values / Format | Description |
@@ -232,6 +282,7 @@ This catalog describes the structure, meaning, and rules of data in a the BH tur
 | sun_exposure_type_id | int | 10 | No | 1 | Integer (Primary Key) | Unique ID for sun exposure category |
 | sun_exposure_type_name | varchar | 50 | No | Full Sun | Text | Name of sun exposure type (e.g.Partial Shade, Shade) |
 
+---
 #### location
 
 | Field Name | SQL Type | Length / Precision | Nullable | Example Value | Allowed Values / Format | Description |
@@ -245,6 +296,7 @@ This catalog describes the structure, meaning, and rules of data in a the BH tur
 | nearest_landmark | nvarchar | 50 | Yes | Beach access road | Text | Nearest landmark for reference |
 | location_type_id | int | 10 | No | 1 | Integer (FK) | Type of location (e.g., nesting site, landing site, hotel). Reference to location_type (lookup table) |
 
+---
 #### site
 
 | Field Name | SQL Type | Length / Precision | Nullable | Example Value | Allowed Values / Format | Description |
@@ -261,6 +313,7 @@ This catalog describes the structure, meaning, and rules of data in a the BH tur
 | is_hotel | bit | 1 | Yes | 1 | 0 / 1 | Flag if site is part of a hotel property |
 | is_private | bit | 1 | Yes | 0 | 0 / 1 | Flag if site is privately owned |
 
+---
 #### area
 
 | Field Name | SQL Type | Length / Precision | Nullable | Example Value | Allowed Values / Format | Description |
@@ -270,4 +323,7 @@ This catalog describes the structure, meaning, and rules of data in a the BH tur
 | admin_2 | varchar | 20 | Yes | Malindi | Text | Lower administrative unit (sub-county) |
 | admin_1 | varchar | 20 | Yes | Kilifi | Text | Mid-level administrative unit (county) |
 | admin_0 | varchar | 20 | Yes | Kenya | Text | top-level administrative unit (Country)|
+
+---
+
 
