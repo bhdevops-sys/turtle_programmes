@@ -157,7 +157,7 @@ This catalog describes the structure, meaning, and rules of data in a the BH tur
 
 | Field Name | SQL Type | Length / Precision | Nullable | Example Value | Allowed Values / Format | Description |
 |------------|----------|-------------------|----------|---------------|------------------------|-------------|
-| sex_id | int | 10 | No | 1 | Integer (Primary Key) | Unique ID for sex/gender category |
+| sex_id | int | 10 | No | 1 | Integer (Primary Key) | Unique ID for sex |
 | sex_name | varchar | 20 | No | Male | Text | Name of sex in English |
 | sex_name_swahili | varchar | 100 | Yes | Mwanaume | Text | Name of sex in Swahili (optional) |
 
