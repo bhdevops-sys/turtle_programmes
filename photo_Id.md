@@ -99,6 +99,7 @@ The mobile app follows a structured business process to gather and analyze turtl
 
 For a visual representation of the database structure, refer to the [Entity-Relationship Diagram (ERD)](https://github.com/bhdevops-sys/turtle_programmes/blob/main/ERD/photo_id.md).
 
+Data dictionary, refer to the [Photo-id data dictionary](https://github.com/bhdevops-sys/turtle_programmes/blob/main/data_dictionary/photo_id_app.md).
 ---
 
 #### Reporting and Visualization
