@@ -167,3 +167,29 @@ This catalog describes the structure, meaning, and rules of data in a the BH pho
 | party_type_swahili  | varchar  | 100               | Yes      | Shirika  | String (max 100 chars) | Name of the party type in Swahili.                |
 
 ---
+
+#### v_all_photo_id_fields
+## 13. turtle_sightings_view (denormalized / reporting view)
+
+| Field Name | SQL Type | Length | Nullable | Example Value | Allowed Values / Format | Description |
+|------------|----------|--------|----------|---------------|--------------------------|-------------|
+| turtle_sighting_id | varchar | 8 | No | TS00001 | Alphanumeric, unique | Unique sighting identifier |
+| survey_datetime | datetime | — | No | 2025-06-01 10:30:00 | YYYY-MM-DD HH:MM:SS | Date and time of observation |
+| observer | varchar | 200 | Yes | Kalume Kenga| Free text | Name of observer |
+| individual's name | varchar | 20 | Yes | Salimu | Free text | Name/label of turtle |
+| bh_id | varchar | 20 | Yes | BH001 | Alphanumeric | bahari hai issued turtle identifier  |
+| species_name | varchar | 20 | Yes | Green Turtle | Predefined species | Turtle species |
+| sex_name | varchar | 20 | Yes | Female | Male, Female, Unknown | Sex of turtle |
+| age | varchar | 20 | No | Adult | Juvenile, Subadult, Adult | Age class |
+| estimated_ccl | int | — | No | 75 | Integer ≥ 0 | Estimated curved carapace length (cm) |
+| turtle_behaviour | varchar | 20 | Yes | Feeding | Predefined behaviours | Observed behaviour |
+| site_name | varchar | 50 | Yes | Watamu Reef | Free text | Site name |
+| tide_name | varchar | 20 | Yes | High | High, Low, Mid | Tide level |
+| name | varchar | 20 | Yes | Spring | Spring, Neap | Tide cycle |
+| visibility_name | varchar | 20 | Yes | Clear | Poor, Moderate, Clear | Visibility condition |
+| sighting depth(m) | int | — | Yes | 5 | Integer ≥ 0 | Depth in meters |
+| lat_long | nvarchar | 100 | Yes | -3.123,40.123 | "lat,lon" decimal format | Geographic coordinates |
+
+---
+
+
