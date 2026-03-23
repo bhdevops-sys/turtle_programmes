@@ -230,7 +230,7 @@ This catalog describes the structure, meaning, and rules of data in a the BH tur
 | Field Name | SQL Type | Length / Precision | Nullable | Example Value | Allowed Values / Format | Description |
 |------------|----------|-------------------|----------|---------------|------------------------|-------------|
 | interaction_id | varchar | 8 | No | INT001 | Alphanumeric ID | Unique identifier for each turtle interaction |
-| old_rescue_id | varchar | 14 | Yes | RESC-2023-001 | Alphanumeric ID | Legacy rescue ID if applicable |
+| old_rescue_id | varchar | 14 | Yes | rsc-2023-001 | Alphanumeric ID | Legacy rescue ID if applicable |
 | turtle_id | int | 10 | No | 101 | Integer (FK) | Reference to turtle (`turtle_id`) |
 | interaction_type_id | int | 10 | No | 2 | Integer (FK) | Reference to interaction_type (e.g., nesting,bycatch) |
 | interaction_date_time | datetime | — | Yes | 2026-06-15 09:45:00 | YYYY-MM-DD HH:MM:SS | Date and time of the interaction |
@@ -325,5 +325,82 @@ This catalog describes the structure, meaning, and rules of data in a the BH tur
 | admin_0 | varchar | 20 | Yes | Kenya | Text | top-level administrative unit (Country)|
 
 ---
+#### v_all_nest_fields
 
+| Field Name | SQL Type | Length | Nullable | Example Value | Allowed Values / Format | Description |
+|------------|----------|--------|----------|---------------|--------------------------|-------------|
+| nest_id | varchar | 20 | No | NEST-2026-015 | Alphanumeric, unique | Unique nest identifier |
+| laid_date_time | datetime | — | No | 2025-02-10 22:15:00.000 | YYYY-MM-DD HH:MM:SS | Date and time eggs were laid |
+| expected_hatch_datetime | datetime | — | Yes | 2022-06-29 06:09:00.000 | YYYY-MM-DD HH:MM:SS | Estimated hatching datetime |
+| reporter_name | varchar | 50 | No | Karisa Kenga | Free text | Person reporting the nest |
+| turtle_track_width_cm | numeric | — | Yes | 85.50 | Decimal ≥ 0 | Width of turtle track (cm) |
+| species_name | varchar | 20 | No | Green Turtle | Predefined species names | Turtle species |
+| original_site_id | varchar | 8 | No | 107 | FK reference | Original nesting site id |
+| original_site_name | varchar | 50 | No | Watamu Beach | Free text | Original nesting site name |
+| original_location_id | int | — | No | 1445 | Integer | Location reference |
+| original_x_coord | decimal | — | Yes | 40.1234 | Decimal (lon) | Original longitude |
+| original_y_coord | decimal | — | Yes | -3.1234 | Decimal (lat) | Original latitude |
+| original_area | varchar | 20 | Yes | Watamu | Free text | Original nesting area name |
+| distance_from_hwm_m | numeric | — | Yes | 2.50 | Decimal ≥ 0 | Distance from high water mark (m) |
+| is_relocated | varchar | 3 | No | Yes | Yes/No | Indicates if nest was relocated |
+| relocated_site_id | varchar | 8 | Yes | 765 | FK reference | New site ID |
+| relocated_site_name | varchar | 50 | Yes | Plot 28 | Free text | New site name |
+| relocated_location_id | int | — | Yes | 2 | Integer | New location reference |
+| relocated_x_coord | decimal | — | Yes | 40.5678 | Decimal (lon) | Relocated longitude |
+| relocated_y_coord | decimal | — | Yes | -3.5678 | Decimal (lat) | Relocated latitude |
+| relocated_area | varchar | 20 | Yes | Watamu | Free text | Relocated area name |
+| relocation_datetime | datetime | — | Yes | 2025-02-11 08:00:00 | YYYY-MM-DD HH:MM:SS | Date/time of relocation |
+| reason_for_relocation_id | int | — | Yes | 1 | FK reference | Reason for relocation ID |
+| reason_for_relocation | varchar | 50 | Yes | Nest laid in a beach access road | Predefined / free text | Reason description |
+| time_taken_to_relocate | numeric | — | Yes | 1.50 | Hours (decimal) | Time taken to relocate the nest |
+| parties_at_relocation | ntext | — | Yes | Shungu, KWS, Jefwa | Free text | People/groups/organizations involved |
+| num_eggs_relocated | int | — | Yes | 124 | Integer ≥ 0 | Number of relocated eggs|
+| relocation_notes | varchar | 200 | Yes | Nest safely relocated | Free text | Notes on relocation |
+| turtle_id | int | — | No | 3401 | FK reference | turtle reference|
+| current_tag_1 | varchar | 20 | No | KBL123 | Alphanumeric | Primary tag |
+| current_tag_2 | varchar | 20 | No | KBL124 | Alphanumeric | Secondary tag |
+| turtle_ccl_cm | numeric | — | Yes | 95.20 | Decimal ≥ 0 | Curved carapace length (cm) |
+| turtle_ccw_cm | numeric | — | Yes | 88.40 | Decimal ≥ 0 | Curved carapace width (cm) |
+| turtle_characteristics | varchar | 500 | Yes | Notch on left rear flipper | Free text | Physical characteristics |
+| hatching_outcome_name | varchar | 30 | Yes | Successful | Predefined categories | Hatching outcome |
+| actual_hatch_datetime | datetime | — | Yes | 2025-04-12 02:00:00 | YYYY-MM-DD HH:MM:SS | Actual hatch time |
+| num_actual_incubation_days | float | — | Yes | 60.5 | Decimal ≥ 0 | Incubation duration (days) |
+| excavation_datetime | datetime | — | Yes | 2025-04-15 09:00:00 | YYYY-MM-DD HH:MM:SS | Excavation date/time |
+| sun_exposure_type_name | varchar | 50 | Yes | Partial Shade | Predefined categories | Sun exposure |
+| top_shell_depth_cm | float | — | Yes | 30.5 | Decimal ≥ 0 | Top shell depth  (cm)|
+| bottom_shell_depth_cm | float | — | Yes | 60.0 | Decimal ≥ 0 | Bottom shell depth  (cm)|
+| num_eggs_empty | smallint | — | Yes | 5 | Integer ≥ 0 | Empty eggs |
+| num_eggs_early_dev | smallint | — | Yes | 3 | Integer ≥ 0 | Early development eggs |
+| num_eggs_under_dev | smallint | — | Yes | 2 | Integer ≥ 0 | Underdeveloped eggs |
+| num_eggs_mid_dev | smallint | — | Yes | 4 | Integer ≥ 0 | Mid development eggs |
+| num_eggs_late_dev | smallint | — | Yes | 6 | Integer ≥ 0 | Late development eggs |
+| num_eggs_micro | smallint | — | Yes | 1 | Integer ≥ 0 | Micro-sized eggs |
+| num_eggs_unknown | smallint | — | Yes | 0 | Integer ≥ 0 | Unknown category |
+| num_eggs_depredated | smallint | — | Yes | 2 | Integer ≥ 0 | Depredated eggs |
+| num_eggs_yolkless | smallint | — | Yes | 1 | Integer ≥ 0 | Yolkless eggs |
+| num_hatchlings_pipped_dead | smallint | — | Yes | 1 | Integer ≥ 0 | Dead pipped hatchlings |
+| num_hatchlings_pipped_live | smallint | — | Yes | 3 | Integer ≥ 0 | Live pipped hatchlings |
+| num_hatchlings_dead | smallint | — | Yes | 2 | Integer ≥ 0 | Dead hatchlings |
+| num_hatchlings_live | smallint | — | Yes | 100 | Integer ≥ 0 | Live hatchlings |
+| num_total_eggs_excavated | smallint | — | Yes | 120 | Integer ≥ 0 | Total eggs excavated |
+| num_total_eggs_successful | smallint | — | Yes | 100 | Integer ≥ 0 | Successfully hatched eggs |
+| num_relocated_eggs_missing | smallint | — | Yes | 2 | Integer ≥ 0 |number of missing eggs from total relocated eggs |
+| num_relocated_eggs_extra | smallint | — | Yes | 1 | Integer ≥ 0 | Extra eggs found |
+| nest_success_rate | float | — | Yes | 0.83 | 0–1 decimal | Success rate |
+| rate_eggs_empty | float | — | Yes | 0.04 | 0–1 decimal | Empty egg rate |
+| rate_eggs_early_dev | float | — | Yes | 0.02 | 0–1 decimal | Rate of early developed eggs (%) |
+| rate_eggs_under_dev | float | — | Yes | 0.01 | 0–1 decimal | Rate of underdeveloped eggs (%) |
+| rate_eggs_mid_dev | float | — | Yes | 0.03 | 0–1 decimal | Rate of mid-developed eggs (%) |
+| rate_eggs_late_dev | float | — | Yes | 0.05 | 0–1 decimal | Rate of late-developed eggs (%) |
+| rate_eggs_micro | float | — | Yes | 0.01 | 0–1 decimal | Rate of micro-eggs (%) |
+| rate_eggs_unknown | float | — | Yes | 0.00 | 0–1 decimal | Rate of unknown eggs (%) |
+| rate_eggs_depredated | float | — | Yes | 0.02 | 0–1 decimal | Rate of depredated eggs (%) |
+| rate_eggs_yolkless | float | — | Yes | 0.01 | 0–1 decimal | Rate of yolkless eggs (%) |
+| rate_hatchlings_pipped_dead | float | — | Yes | 0.01 | 0–1 decimal | Rate of dead pipped hatchlings (%) |
+| rate_hatchlings_pipped_live | float | — | Yes | 0.02 | 0–1 decimal | Rate of live pipped hatchlings (%) |
+| rate_hatchlings_dead | float | — | Yes | 0.02 | 0–1 decimal | Rate of dead hatchlings (%) |
+| rate_hatchlings_live | float | — | Yes | 0.83 | 0–1 decimal | Rate of live hatchlings (%) |
+| nest_failure_cause_name | varchar | 50 | Yes | Flooding | Predefined categories | Cause of nest failure |
+| excavation_notes | varchar | 300 | Yes | Successful excavation | Free text | Notes from excavation |
 
+---
