@@ -9,7 +9,7 @@ This catalog describes the structure, meaning, and rules of data in a the BH pho
 | obsever_id | varchar | 8 | No | rty001 | Alphanumeric (FK) | Observer id. Reference to party (lookup table)|
 | tide_cycle_id | varchar | 8 | No | 01 | Alphanumeric (FK) | Tide cycle. Reference to tide_cycle (lookup table) |
 | tide_level_id | varchar | 8 | No | 01 | Alphanumeric (FK) | Tide level. Reference to tide_level (lookup table) |
-| visibility_id | varchar | 8 | Yes | VIS01 | Alphanumeric (FK) | Visibility condition. Reference to visibility (lookup table) |
+| visibility_id | varchar | 8 | Yes | vy2 | Alphanumeric (FK) | Visibility condition. Reference to visibility (lookup table) |
 | turtle_sighting_depth_m | int | — | Yes | 5 | Integer ≥ 0 | Depth in meters |
 | site_id | varchar | 8 | No | SITE01 | Alphanumeric (FK) | Observation site. Reference to site (lookup table) |
 | lat_long | nvarchar | 100 | Yes | -3.123,40.123 | "lat,lon" decimal format | Geographic coordinates (decimal degree)|
