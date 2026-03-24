@@ -1,6 +1,8 @@
 #### Turtle photo-id Data Dictionary
 This catalog describes the structure, meaning, and rules of data in a the BH photo-id database. It's relevance is in ensuring that data is comprehended, managed, and used consistently across the organization. It improves data clarity, quality, consistency, collaboration, and analysis, thus remaining essential for managing datasets and information systems within Bahari Hai.
 
+---
+
 #### turtle_sighting
 | Field Name | SQL Type | Length | Nullable | Example Value | Allowed Values / Format | Description |
 |------------|----------|--------|----------|---------------|--------------------------|-------------|
@@ -38,7 +40,6 @@ This catalog describes the structure, meaning, and rules of data in a the BH pho
 ---
 
 ####  tide_cycle
-
 | Field Name | SQL Type | Length | Nullable | Example Value | Allowed Values / Format | Description |
 |------------|----------|--------|----------|---------------|--------------------------|-------------|
 | tide_cycle_id | varchar | 8 | No | TC01 | Alphanumeric | Unique tide cycle ID |
@@ -85,8 +86,8 @@ This catalog describes the structure, meaning, and rules of data in a the BH pho
 | tag_status_name | varchar | 20 | No | Active | Active, Lost | Status of tag |
 
 ---
-#### site
 
+#### site
 | Field Name | SQL Type | Length / Precision | Nullable | Example Value | Allowed Values / Format | Description |
 |------------|----------|-------------------|----------|---------------|------------------------|-------------|
 | site_id | varchar | 8 | No | S001 | Alphanumeric | Unique ID for the site |
@@ -102,8 +103,8 @@ This catalog describes the structure, meaning, and rules of data in a the BH pho
 | is_private | bit | 1 | Yes | 0 | 0 / 1 | Flag if site is privately owned |
 
 ---
-#### area
 
+#### area
 | Field Name | SQL Type | Length / Precision | Nullable | Example Value | Allowed Values / Format | Description |
 |------------|----------|-------------------|----------|---------------|------------------------|-------------|
 | area_id | int | 10 | No | 1 | Integer (Primary Key) | Unique ID for each area/region |
@@ -113,8 +114,8 @@ This catalog describes the structure, meaning, and rules of data in a the BH pho
 | admin_0 | varchar | 20 | Yes | Kenya | Text | top-level administrative unit (Country)|
 
 ---
-#### sex
 
+#### sex
 | Field Name | SQL Type | Length / Precision | Nullable | Example Value | Allowed Values / Format | Description |
 |------------|----------|-------------------|----------|---------------|------------------------|-------------|
 | sex_id | int | 10 | No | 1 | Integer (Primary Key) | Unique ID for sex |
@@ -122,16 +123,16 @@ This catalog describes the structure, meaning, and rules of data in a the BH pho
 | sex_name_swahili | varchar | 100 | Yes | Mwanaume | Text | Name of sex in Swahili (optional) |
 
 ---
-#### species
 
+#### species
 | Field Name | SQL Type | Length / Precision | Nullable | Example Value | Allowed Values / Format | Description |
 |------------|----------|-------------------|----------|---------------|------------------------|-------------|
 | species_id | int | 10 | No | 1 | Integer (Primary Key) | Unique ID for each turtle species |
 | species_name | varchar | 20 | No | Green Turtle | Text | Name of the turtle species |
 
 ---
-#### turtle
 
+#### turtle
 | Field Name | SQL Type | Length / Precision | Nullable | Example Value | Allowed Values / Format | Description |
 |------------|----------|-------------------|----------|---------------|------------------------|-------------|
 | turtle_id | int | 10 | No | 101 | Integer (Primary Key) | Unique identifier for each turtle |
@@ -143,8 +144,8 @@ This catalog describes the structure, meaning, and rules of data in a the BH pho
 | turtle_notes | varchar | 200 | Yes | Female observed nesting in June | Free text (≤200 chars) | Additional observations about the turtle |
 
 ---
-#### party
 
+#### party
 | Field Name | SQL Type | Length / Precision | Nullable | Example Value | Allowed Values / Format | Description |
 |------------|----------|-------------------|----------|---------------|------------------------|-------------|
 | party_id | varchar | 8 | No | RPT001 | Alphanumeric | Unique ID for each party (person,group or organization) |
@@ -158,8 +159,8 @@ This catalog describes the structure, meaning, and rules of data in a the BH pho
 | organization_id | varchar | 8 | Yes | baharihai | Alphanumeric (FK)| Reference to party (`party_id`) |
 
 ---
-#### party_type
 
+#### party_type
 | Field Name          | SQL Type | Length / Precision | Nullable | Example Value        | Allowed Values / Format | Description                                      |
 |---------------------|----------|-------------------|----------|---------------------|------------------------|--------------------------------------------------|
 | party_type_id       | int      | 10                | No       | 4                   | Integer (0-10)         | Unique identifier for the party type.            |
@@ -169,8 +170,6 @@ This catalog describes the structure, meaning, and rules of data in a the BH pho
 ---
 
 #### v_all_photo_id_fields
-## 13. turtle_sightings_view (denormalized / reporting view)
-
 | Field Name | SQL Type | Length | Nullable | Example Value | Allowed Values / Format | Description |
 |------------|----------|--------|----------|---------------|--------------------------|-------------|
 | turtle_sighting_id | varchar | 8 | No | TS00001 | Alphanumeric, unique | Unique sighting identifier |
